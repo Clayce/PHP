@@ -1,5 +1,8 @@
 <?php
-    $categorias= [];
+
+    session_start(); //sempre no início do script
+
+    $categorias= []; //array numérico
     $categorias[]= 'infantil';
     $categorias[]= 'adolescente';
     $categorias[]= 'adulto';
@@ -9,8 +12,8 @@
 
     if(empty($nome)) // verifica se a var está vazia
     {
-        echo 'Nome não pode ser vazio!';
-        return;
+        $_SESSION['mensagem-de-erro'] = 'O nome não pode ser vazio! Por favor digite seu nome.';
+        header('string location:  index.php');
     }
 
     if(strlen($nome) < 3) // strlen: conta  a quantidade de cacactere na var
@@ -48,6 +51,12 @@
     if(strlen($nome) > 30) //se nome informado for maior que 30
     {
         echo 'O nome é muito extenso!';
+        return;
+    }
+
+    if(empty($idade))
+    {
+        echo 'Idade não pode ser vazio!';
         return;
     }
 

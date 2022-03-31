@@ -1,3 +1,7 @@
+<?php
+    session_start();//inicia sessão http no script
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,6 +15,16 @@
     <p>FORMULÁRIO PARA INSCRIÇÃO DE COMPETIDORES</p>
 
     <form action="script.php" method="post"> <!-- action: arquivo para enviar os dados-->
+        <?php
+            $mensagemDeErro = isset($_SESSION['mensagem-de-erro']) ? $_SESSION['mensagem-de-erro']: '' ;
+            //? execução do if, : execução do else
+
+            if(!empty($mensagemDeErro))
+            {
+                echo $mensagemDeErro;
+            }
+        ?>
+
         <p>Seu nome: <input type="text" name= "nome"></p>
         <p>Sua idade: <input type="text" name= "idade"></p>
         <p><input type="submit" value="Enviar dados"></p>
